@@ -1,0 +1,51 @@
+---
+title: "Final Project Markdown"
+author: Sofia Charlot
+output: html_document
+date: "2025-11-05"
+---
+
+# Introduction
+The CDC PLACES data set provides health and health-related data at various levels: county, census tract, ZIP code, and place. It uses population data from the census to make small-area estimates on the prevalence of 40 chronic diseases and other health-related factors like poverty, employment, and education. My research question is, what is the relationship between communal and commercial food system components and food insecurity in the Metro Atlanta area? I will evaluate that relationship using spatial and statistical analysis. The objective of this current analysis is to do a simple evaluation of the relationship between my outcome of interest and potential covariates. My outcome of interest is food insecurity, and the potential covariates I'll be evaluating are Housing Insecurity, Transportation Barriers, and SNAP (Food Stamp) usage. Another objective is to map these components for a descriptive analysis of where these components are within the Metro Atlanta Area.
+
+```{r, set-chunk-opts, echo = FALSE}
+library(knitr)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+```
+
+
+```{r, load-data, echo=FALSE, include=FALSE}
+here::i_am("final_report.Rmd")
+places_data <- readRDS(
+  file = here::here("output/clean_places_data.rds")
+)
+```
+
+# Tabular Analysis
+
+This table includes descriptive statistics for the 11 counties in the Metro Atlanta area, stratified by a food insecurity prevalence above or below the national average of 13.5%. This tables includes potential covariates like travel barriers, housing insecurity, and SNAP (Food Stamp) usage.
+
+```{r, table1, echo=FALSE}
+table_one <- readRDS(
+  file = here::here("tables/table_one.rds")
+)
+table_one
+```
+
+
+
+# Graphical Analysis
+
+This image displays components of the food environment mapped onto the 10-county Metro Atlanta area. Distinct store types are detailed with various colors. 
+
+```{r, scatterplot, echo=FALSE}
+#| fig.align = "center",
+#| out.width = "600px",
+knitr::include_graphics(
+  here::here("figures/plotted_component_points.png")
+)
+```
+
+

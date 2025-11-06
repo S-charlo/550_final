@@ -9,4 +9,5 @@
 .png
 .jpg
 .docx
-raw_data/*
+.raw_data/
+.clean_data/

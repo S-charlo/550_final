@@ -36,24 +36,17 @@ head(all_component_data)
 #Save combined data as an object
 saveRDS(
   all_component_data, 
-  file = here::here("clean_data/all_component_data.rds")
+  file = here::here("output/all_component_data.rds")
 )
 
 #Turning this into a sf point layer 
 all_component_points <- st_as_sf(all_component_data,
-                        coords = c("Latitude", "Longitude"),
+                        coords = c("Longitude","Latitude"),
                         crs = 4326)
 
-#Plot and save all component types
-plotted_component_data <- 
-  ggplot(all_component_data, aes(x = Longitude, y = Latitude, color = Type)) +
-  geom_point() +
-  coord_equal() +
-  theme_minimal()
-
-ggsave(
-  here::here("figures/plotted_components.png"),
-  plot = plotted_component_data,
-  device = "png"
+#Save sf point layer as an object
+saveRDS(
+  all_component_points, 
+  file = here::here("output/all_component_points.rds")
 )
 
