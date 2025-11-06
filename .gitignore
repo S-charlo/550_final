@@ -9,5 +9,6 @@
 .png
 .jpg
 .docx
-.raw_data/
-.clean_data/
+.DS_Store
+.Rapp.history
+.html
