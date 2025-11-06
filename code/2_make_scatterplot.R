@@ -27,6 +27,9 @@ plotted_component_points <-
   coord_sf(xlim = st_bbox(all_component_points)[c("xmin", "xmax")],
            ylim = st_bbox(all_component_points)[c("ymin", "ymax")],
            expand = TRUE) +
+  labs(
+    title = "The Commercial and Communal Food Evironment in the Metro Atlanta Area"
+  )
   theme_minimal()
 
 ggsave(
