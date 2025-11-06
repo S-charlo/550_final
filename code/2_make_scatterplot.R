@@ -29,7 +29,7 @@ plotted_component_points <-
            expand = TRUE) +
   labs(
     title = "The Commercial and Communal Food Evironment in the Metro Atlanta Area"
-  )
+  ) +
   theme_minimal()
 
 ggsave(
