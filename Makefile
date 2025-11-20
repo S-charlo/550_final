@@ -21,6 +21,7 @@ output/clean_places_data.rds: code/0_load_pre_data.R raw_data/places.csv
 # add make rule for renv
 .PHONY: install
 install:
+	Rscript -e "install.packages('renv')"
 	Rscript -e "renv::restore(prompt = FALSE)"
 
 # PHONY target to clean the project directory

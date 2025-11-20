@@ -14,6 +14,11 @@ for the point data.
 
 `code/3_render_report.R` - renders the `final_report.Rmd`
 
+# Project Environment
+To restore the package environment run `make install` in the terminal to 
+restore the package library. This rule installs the renv package and sets up 
+project library with all relevant packages in a `renv.lock` file. 
+
 # Code for data cleaning
 
 `code/0_load_pre_data.R` - loads and cleans data for the outcome (food
