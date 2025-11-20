@@ -17,6 +17,11 @@ output/all_component_points.rds: code/0_load_comp_data.R raw_data/gardens_orchar
 # build output for code/0_load_pre_data.R
 output/clean_places_data.rds: code/0_load_pre_data.R raw_data/places.csv
 	Rscript code/0_load_pre_data.R
+	
+# add make rule for renv
+.PHONY: install
+install:
+	Rscript -e "renv::restore(prompt = FALSE)"
 
 # PHONY target to clean the project directory
 .PHONY: clean
