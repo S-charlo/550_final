@@ -6,6 +6,7 @@ data <- readRDS(
 
 library(dplyr)
 library(gtsummary)
+library(broom)
 
 table_one <- data |>
   select("county", "food_insecurity_prev", "trans_count", "SNAP_count", "house_count") |>

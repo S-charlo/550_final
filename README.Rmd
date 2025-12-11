@@ -1,43 +1,62 @@
 ---
-title: Final Project Organization
+title: Final Project Compiled Report
 author: Sofia Charlot
 output: github_document
 ---
 
-# Final Report
 
-Generate the final report using the Makefile in the project directory. Type "make" in the terminal to generate the `final_report.html` in the project directory.
+# Building the Final Report
 
-The report includes a brief introduction to my research objective, tabular analysis for the variables of interest, and graphical analysis for the point data.
+### System requirements
+- Docker
+- Make
+- Git
 
-`code/3_render_report.R`
-  - renders the `final_report.Rmd`
-  
-# Code for data cleaning
+# Building the report using Docker
 
-`code/0_load_pre_data.R`
-  - loads and cleans data for the outcome (food insecurity) and additional predictor          (transportation barriers, SNAP usage, and housing insecurity) variables in the PLACES     dataset
+### Build the image
+- From the project directory run: `docker build -t final_project .`
+
+### Create the report
+- Then run: `make docker_report`
+
+- The compiled `final_report.html` will appear in the `report/` folder of the project directory. Inside the container, the `/final/report` folder is mounted to the local `report/` folder, so `final_report.html` will be written directly into the local `report/` directory.
+
+
+- The report includes:
+  - A brief introduction of the research objective
+  - Tabular analysis for the variables of interest
+  - Graphical analysis for the point data
+
+
+## Project Directory Contents
   
-  - Saves data as a `.rds` object in the `output/` folder
+### Code for data cleaning
+
+- `code/0_load_pre_data.R`
+  - Loads and cleans data for the outcome (food insecurity) and additional predictor variables (transportation barriers, SNAP usage, and housing insecurity) from the PLACES dataset
+  - Saves the cleaned data as an `.rds` object in the `output/` folder
   
-`code/0_load_comp_data.R`
-  - Loads and cleans data for the primary predictor variables (commercial and communal        food retailers/components)
-  
-  - Saves data as a `.rds` object in the `output/` folder
+- `code/0_load_comp_data.R`
+  - Loads and cleans data for the primary predictor variables (commercial and communal food retailers/components)
+  - Saves data as an `.rds` object in the `output/` folder
     
-# Code for tables
+### Code for tables
 
-`code/1_make_table1.R`
-  - Generated a summary table with descriptive statistics evaluating food insecurity &        potential covariates
-  
-  - Saves data as a `.rds` object in the `tables/` folder
+- `code/1_make_table1.R`
+  - Generates a summary table with descriptive statistics evaluating food insecurity and potential covariates
+  - Saves the table as an `.rds` object in the `tables/` folder
     
-# Code for figures
+### Code for figures
 
-`code/2_make_scatterplot.R`
+- `code/2_make_scatterplot.R`
   - Plot the food environment point data onto a map of the Metro Atlanta area
+  - Saves the figure as a `.png` object in the `figures/` folder
   
-  - Saves data as a `.png` object in the `figures/` folder
+### Code to generate the compiled report
+
+- `code/3_render_report.R`
+  - Renders the `final_report.Rmd` and writes the HTML report to `report/final_report.html`
     
     
 

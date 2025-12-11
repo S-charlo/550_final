@@ -1,13 +1,21 @@
 # rendering the final report
-final_report.html: code/3_render_report.R final_report.Rmd output/table_one.rds output/scatterplot.png output/all_component_points.rds output/clean_places_data.rds
+report/final_report.html: code/3_render_report.R final_report.Rmd tables/table_one.rds figures/scatterplot.png output/all_component_points.rds output/clean_places_data.rds
 	Rscript code/3_render_report.R
 
+# run the container
+docker_report:
+		rm -rf report
+		mkdir -p report
+		docker run --rm \
+	  	-v "$$(pwd)/report:/final/report" \
+	  	final_project
+
 # build output for code/1_make_table1.R
-output/table_one.rds: code/1_make_table1.R output/clean_places_data.rds
+tables/table_one.rds: code/1_make_table1.R output/clean_places_data.rds
 	Rscript code/1_make_table1.R
 
 # build output for code/2_make_scatter.R
-output/scatterplot.png: code/2_make_scatterplot.R output/all_component_points.rds
+figures/scatterplot.png: code/2_make_scatterplot.R output/all_component_points.rds
 	Rscript code/2_make_scatterplot.R
 	
 # build output for c code/0_load_comp_data.R
@@ -27,4 +35,4 @@ install:
 # PHONY target to clean the project directory
 .PHONY: clean
 clean:
-	rm output*/*.rds figures/*.png clean_data*/*.rds *.html reports/*.rds tables/*.rds
+	rm output*/*.rds figures/*.png clean_data*/*.rds *.html tables/*.rds report/*.html
